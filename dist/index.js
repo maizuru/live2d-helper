@@ -1980,13 +1980,11 @@ PlatformManager.prototype.loadBytes = function (path/*String*/, callback) {
     request.open("GET", path, true);
     request.responseType = "arraybuffer";
     request.onload = function () {
-        switch (request.status) {
-            case 200:
-                callback(request.response);
-                break;
-            default:
-                console.error("Failed to load (" + request.status + ") : " + path);
-                break;
+        if (request.response) {
+            callback(request.response);
+        } else {
+            console.error("Failed to load (" + request.status + ") : " + path);
+            break;
         }
     }
     request.send(null);
