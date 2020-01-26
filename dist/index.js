@@ -1984,7 +1984,6 @@ PlatformManager.prototype.loadBytes = function (path/*String*/, callback) {
             callback(request.response);
         } else {
             console.error("Failed to load (" + request.status + ") : " + path);
-            break;
         }
     }
     request.send(null);
